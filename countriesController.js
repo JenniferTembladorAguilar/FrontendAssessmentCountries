@@ -2,39 +2,68 @@
 // api url 
 const api_url = "https://restcountries.com/v3.1/all";
 
-
+var allCountries;
 async function getApi(url) {
-
-
+ 
     const response = await fetch(url);
 
     // Store allCountries in JSON 
-    var allCountries = await response.json();
+    this.allCountries  = await response.json();
 
-    console.log(allCountries);
- 
-    show(allCountries);
+    console.log(this.allCountries);
+    sortTable();
+    show(this.allCountries);
 }
 
 getApi(api_url);
-
-
  
-  
-function show(allCountries) {
 
-   var allCountriesOrdered = allCountries.sort(function (a, b) {
+function toggleSort(event){
+    
+    var isChecked = document.getElementById('checkToggle').checked;
+    console.log(isChecked);
+    return isChecked;
+   
+   
+}
+ 
+ 
+function sortTable(){
+    
+    var isToggleActive = toggleSort(event) ;
+     
+
+var allCountriesOrdered;
+if(isToggleActive){
+    allCountriesOrdered = this.allCountries.sort(function (a, b) {
         if (a.name.official > b.name.official) {
           return 1;
         }
         if (a.name.official < b.name.official) {
           return -1;
         }
-        // a must be equal to b
+         
         return 0;
       });
+      show(allCountriesOrdered);
+       
+}else{
+    allCountriesOrdered = this.allCountries.sort(function (a, b) {
+        if (a.name.official < b.name.official) {
+          return 1;
+        }
+        if (a.name.official > b.name.official) {
+          return -1;
+        }
+         
+        return 0;
+      });
+      show(allCountriesOrdered);
+}  
+}  
 
 
+function show(allCountriesOrdered) {
 
     let tab =
         `<tr>
@@ -82,3 +111,4 @@ function show(allCountries) {
 
     
 }
+

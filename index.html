@@ -11,9 +11,16 @@
 </head>
 
 <body>
-
+     
+    <div class="spanToggle"  ><span>Order by Official Name</span></div>
+    <label class="toggle">
+        <input type="checkbox" checked onchange="sortTable(this)" id="checkToggle" onload="test(this)">
+        <span class="slider"></span>
+        <span id="toggleSpan"  class="labels" data-on="Asc" data-off="Desc"></span>
+      </label>
+     
     <!-- table for showing data -->
-    <table id="countriesTable"></table>
+     <table id="countriesTable"></table>
 </body>
 
 </html>
