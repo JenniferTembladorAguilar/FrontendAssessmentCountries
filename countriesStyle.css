@@ -1,0 +1,28 @@
+table {
+  font-family: "Courier New", Courier, monospace;
+  width: 100%;
+  text-align: center;
+  border-collapse: collapse;
+}
+table td,
+table th {
+  border: 0.5px solid #39055b;
+  padding: 1px 6px;
+}
+table tbody td {
+  font-size: 13px;
+}
+table tr:nth-child(even) {
+  background: #926ab733;
+}
+
+table thead th {
+  font-size: 14px;
+  color: #afa4db;
+  text-align: center;
+}
+
+img {
+  width: 197px;
+  height: 90px;
+}
