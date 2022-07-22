@@ -12,18 +12,30 @@ async function getApi(url) {
     var allCountries = await response.json();
 
     console.log(allCountries);
-    if (response) {
-
-    }
+ 
     show(allCountries);
 }
 
 getApi(api_url);
 
 
-
  
+  
 function show(allCountries) {
+
+   var allCountriesOrdered = allCountries.sort(function (a, b) {
+        if (a.name.official > b.name.official) {
+          return 1;
+        }
+        if (a.name.official < b.name.official) {
+          return -1;
+        }
+        // a must be equal to b
+        return 0;
+      });
+
+
+
     let tab =
         `<tr>
 		<th>OFFICIAL NAME</th>
@@ -35,19 +47,19 @@ function show(allCountries) {
 		</tr>`;
 
     // Loop 
-    for (let country in allCountries) {
-
+    for (let country in allCountriesOrdered) {
+         
         var valuesLanguage;
-        if (allCountries[country].languages) {
-            valuesLanguage = Object.values(allCountries[country].languages);
+        if (allCountriesOrdered[country].languages) {
+            valuesLanguage = Object.values(allCountriesOrdered[country].languages);
             console.log(valuesLanguage);
         } else {
             valuesLanguage = 'No Language to display';
         }
 
         var valuesCapital;
-        if (allCountries[country].capital) {
-            valuesCapital = allCountries[country].capital;
+        if (allCountriesOrdered[country].capital) {
+            valuesCapital = allCountriesOrdered[country].capital;
         } else {
             valuesCapital = 'No Capital';
 
@@ -55,16 +67,18 @@ function show(allCountries) {
 
 
         tab += `<tr>
-	<td>${allCountries[country].name.official} </td>
+	<td>${allCountriesOrdered[country].name.official} </td>
     <td>${valuesCapital} </td>
-    <td>${allCountries[country].region} </td>
+    <td>${allCountriesOrdered[country].region} </td>
     <td>${valuesLanguage} </td>
-    <td>${allCountries[country].population} </td>
-    <td><img src="${allCountries[country].flags.png}"> </td>
+    <td>${allCountriesOrdered[country].population} </td>
+    <td><img src="${allCountriesOrdered[country].flags.png}"> </td>
     
 		
 </tr>`;
     }
-     
+    
     document.getElementById("countriesTable").innerHTML = tab;
+
+    
 }
