@@ -1,8 +1,19 @@
 
 // api url 
 const api_url = "https://restcountries.com/v3.1/all";
-
+var apiWiki_url = "https://en.wikipedia.org/api/rest_v1/page/summary/";
 var allCountries;
+var allCountriesWiki;
+
+async function getApiWikipedia(url){
+    const response = await fetch(url);
+    this.allCountriesWiki  = await response.json();
+    console.log(this.allCountriesWiki.extract_html);
+
+    return this.allCountriesWiki.extract_html;
+}
+
+
 async function getApi(url) {
  
     const response = await fetch(url);
@@ -95,7 +106,7 @@ function show(allCountriesOrdered) {
         }
 
 
-        tab += `<tr>
+        tab += `<tr onclick="createModal(this)" id=${allCountriesOrdered[country].name.common} data-id=${allCountriesOrdered[country].name.official}>
 	<td>${allCountriesOrdered[country].name.official} </td>
     <td>${valuesCapital} </td>
     <td>${allCountriesOrdered[country].region} </td>
@@ -108,7 +119,36 @@ function show(allCountriesOrdered) {
     }
     
     document.getElementById("countriesTable").innerHTML = tab;
-
-    
+ 
 }
 
+// instanciate new modal
+async function createModal(event) {
+    var commonName = event.id;
+    console.log(commonName);
+    var modalContent = await getApiWikipedia(this.apiWiki_url+commonName);
+    console.log(modalContent);
+    var modalToDisplay = new tingle.modal({
+        footer: true,
+        stickyFooter: false,
+        closeMethods: ['overlay', 'button', 'escape'],
+        closeLabel: "Close",
+        cssClass: ['custom-class-1', 'custom-class-2'],
+      });
+
+      modalToDisplay.setContent('<h1>'+commonName+'</h1>');
+      modalToDisplay.setFooterContent('<p>'+modalContent +'</p>');
+      modalToDisplay.open();
+    
+    
+  }
+ 
+
+   
+        
+
+
+
+            
+
+ 
