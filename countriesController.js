@@ -84,6 +84,7 @@ function getPicklistValue(event){
 }
 
 function paginator(allCountriesOrdered){
+    allCountriesPaginated=[];
     var buttonPage = "";
     let currentCountryPosition = 0;
     let rowsPerPage =  parseInt(document.getElementById("rowsDisplayed").value);
