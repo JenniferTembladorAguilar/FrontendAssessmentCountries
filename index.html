@@ -2,27 +2,39 @@
 <html lang="en">
 
 <head>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/tingle/0.13.2/tingle.min.css" rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tingle/0.13.2/tingle.js"></script>  
-    <script src="countriesController.js"></script>
-    <link href="countriesStyle.css" rel="stylesheet" type="text/css">
-    <link href='https://fonts.googleapis.com/css?family=Rock+Salt' rel='stylesheet' type='text/css'>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FrontEnd Assessment</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/tingle/0.13.2/tingle.min.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tingle/0.13.2/tingle.js"></script>
+  <script src="countriesController.js"></script>
+  <link href="countriesStyle.css" rel="stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Rock+Salt' rel='stylesheet' type='text/css'>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FrontEnd Assessment</title>
 </head>
 
 <body>
-    
-    <div class="spanToggle"  ><span>Order by Official Name</span></div>
-    <label class="toggle">
-        <input type="checkbox" checked onchange="sortTable(this)" id="checkToggle">
-        <span class="slider"></span>
-        <span id="toggleSpan"  class="labels" data-on="Asc" data-off="Desc"></span>
-      </label>
-     
-    <!-- table for showing data -->
-     <table id="countriesTable"></table>
+
+  <div class="spanToggle"><span>Order by Official Name</span></div>
+  <label class="toggle">
+    <input type="checkbox" checked onchange="sortTable(this)" id="checkToggle">
+    <span class="slider"></span>
+    <span id="toggleSpan" class="labels" data-on="Asc" data-off="Desc"></span>
+  </label>
+
+  <!-- table for showing data -->
+  <table id="countriesTable"></table>
+  <div align="right">
+    <label for="rowsDisplayed">Rows per page:</label>
+    <select onchange="getPicklistValue(this)" name="rowsDisplayed" id="rowsDisplayed">
+      <option value="25">25</option>
+      <option value="50">50</option>
+      <option value="75">75</option>
+      <option value="100">100</option>
+    </select>
+  </div>
+
+  <div id="divButtonsPage" align="right"><table id="buttonPageTable" class="buttonPage"></table></div>
+  
 </body>
 
 </html>

@@ -6,8 +6,8 @@ table {
 }
 table td,
 table th {
-  border: 0.5px solid #39055b;
-  padding: 1px 6px;
+  
+  padding: 1px 2px;
 }
 table tbody td {
   font-size: 13px;
@@ -118,3 +118,18 @@ img {
   .toggle input:checked~.labels::before {
     opacity: 1;
   }
+
+  #buttonPageTable{
+    width: 50%;
+    margin-top: 5px;
+     
+  }
+  #buttonPageTable th button{
+    border-radius: 25px;
+    background-color: blueviolet;
+    color: white;
+    border-color: blueviolet;
+    
+  }
+
+  
